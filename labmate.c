@@ -15,13 +15,13 @@ int team[MAX_STUDENTS] ;
 int n_team_members[MAX_STUDENTS / 2] ;
 int conflict[MAX_STUDENTS][MAX_STUDENTS] ;
 
-int read_student_list() 
+int read_student_list(char* fname) 
 {
 	FILE * fp ;
 	char * b ;
 	int i ; 
 
-	fp = fopen("students.txt", "r") ; //TODO: allow a user can give a different file name as an argument.
+	fp = fopen(fname, "r") ; //TODO: allow a user can give a different file name as an argument.
 	while (feof(fp) == 0) {
 		if (fscanf(fp, "%d", &(students[n_students])) == 1)
 			n_students++ ;
@@ -181,13 +181,13 @@ void main(int argc, char ** argv)
 				break ;
 
 			default:
-				fprintf(stderr, "Invalid argument\n") ; 
+				fprintf(stderr, "Invalid argument\n") ;
 				// Please someone make a better error message.
 				exit(1) ;
 		}
 	}
 
-	read_student_list() ;
+	read_student_list(fconflict) ;
 	if (fconflict != NULL)
 		read_conflict(fconflict) ;
 	find_team_assignments() ;
